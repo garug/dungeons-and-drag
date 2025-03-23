@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://durrq6pc4vadj"]
+
+[ext_resource type="Texture2D" uid="uid://dwo2pemox8csg" path="res://lib/characters/green.png" id="1_glpr6"]
+[ext_resource type="Script" uid="uid://dk3cjd5x6t7l0" path="res://scripts/character.gd" id="1_pjt0s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa5vi"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_glpr6"]
+radius = 16.0
+
+[node name="Character" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_mask = 2
+input_pickable = true
+script = ExtResource("1_pjt0s")
+
+[node name="TouchShape" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_wa5vi")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_glpr6")
+
+[node name="SwapArea" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="SwapShape" type="CollisionShape2D" parent="CharacterBody2D/SwapArea"]
+shape = SubResource("CircleShape2D_glpr6")
+
+[connection signal="input_event" from="CharacterBody2D" to="CharacterBody2D" method="_on_input_event"]
+[connection signal="area_entered" from="CharacterBody2D/SwapArea" to="CharacterBody2D" method="_on_swap_area_area_entered"]
