@@ -33,8 +33,8 @@ jobs:
           keystore/release_user=\"ANDROID_KEYSTORE_ALIAS\"
           keystore/release_password=\"ANDROID_KEYSTORE_PASSWORD\""
 
-          sed -i "s|ANDROID_KEYSTORE_ALIAS|$ANDROID_KEYSTORE_ALIAS|g" .godot/export_credentials.cfg
-          sed -i "s|ANDROID_KEYSTORE_PASSWORD|$ANDROID_KEYSTORE_PASSWORD|g" .godot/export_credentials.cfg
+          sed -i "s|ANDROID_KEYSTORE_ALIAS|$ANDROID_KEYSTORE_ALIAS|g" ./.godot/export_credentials.cfg
+          sed -i "s|ANDROID_KEYSTORE_PASSWORD|$ANDROID_KEYSTORE_PASSWORD|g" ./.godot/export_credentials.cfg
           
           echo "$export_credentials_content" > .godot/export_credentials.cfg
       - name: Godot Android export
