@@ -45,12 +45,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dungeons-and-drag.apk
-          path: bin/dungeons-and-drag.apk
+          path: dungeons-and-drag.apk
       
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: bin/dungeons-and-drag.apk
+          files: dungeons-and-drag.apk
           tag_name: v1.0.${{ github.run_number }}
           release_name: "Release v1.0.${{ github.run_number }}"
         env:
