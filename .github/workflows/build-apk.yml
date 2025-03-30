@@ -16,19 +16,19 @@ jobs:
       - name: Create export_credentials.cfg
         run: |
           mkdir .godot/
-          
-          export_credentials_content="[preset.0]
 
-          script_encryption_key=""
+          export_credentials_content="[preset.0]
+          
+          script_encryption_key=\"\"
           
           [preset.0.options]
           
-          keystore/debug=""
-          keystore/debug_user=""
-          keystore/debug_password=""
-          keystore/release=""
-          keystore/release_user=""
-          keystore/release_password=""
+          keystore/debug=\"\"
+          keystore/debug_user=\"\"
+          keystore/debug_password=\"\"
+          keystore/release=\"\"
+          keystore/release_user=\"\"
+          keystore/release_password=\"\""
           
           echo "$export_credentials_content" > .godot/export_credentials.cfg
 
