@@ -15,34 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Cache Godot export templates
-        uses: actions/cache@v4
+      - name: Godot Android export
+        uses: dulvui/godot-android-export@v4
         with:
-          path: ~/.local/share/godot/templates
-          key: godot-templates-4.4.1
-
-      - name: Download Godot
-        run: |
-          wget https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_linux.x86_64.zip
-          unzip Godot_v4.4.1-stable_linux.x86_64.zip
-          mv Godot_v4.4.1-stable_linux.x86_64 /usr/local/bin/godot
-
-      - name: Download Export Templates
-        run: |
-          wget https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_export_templates.tpz
-          mkdir -p ~/.local/share/godot/export_templates/4.4.1.stable
-          unzip Godot_v4.4.1-stable_export_templates.tpz -d ~/.local/share/godot/export_templates/4.4.1.stable
-
-
-      - name: Build APK
-        run: |
-          godot --headless --export-release "Android" build/game.apk
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: game-apk
-          path: build/game.apk
+          godot-version: 4.4.1
