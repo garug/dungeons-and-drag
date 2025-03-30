@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - build-apk
-
+env:
+  ANDROID_KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+  ANDROID_STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
 jobs:
   build:
     name: Generate APK
@@ -12,7 +14,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Create export_credentials.cfg
         run: |
           mkdir .godot/
@@ -27,15 +28,13 @@ jobs:
           keystore/debug_user=\"\"
           keystore/debug_password=\"\"
           keystore/release=\"\"
-          keystore/release_user=\"\"
-          keystore/release_password=\"\""
+          keystore/release_user=\"ANDROID_KEYSTORE_ALIAS\"
+          keystore/release_password=\"ANDROID_KEYSTORE_PASSWORD\""
           
           echo "$export_credentials_content" > .godot/export_credentials.cfg
-
       - name: Create keystore
         run: |
           echo ${{ secrets.ANDROID_KEYSTORE }} | base64 --decode > release.keystore
-
       - name: Godot Android export
         uses: dulvui/godot-android-export@v4.1.0
         with:
