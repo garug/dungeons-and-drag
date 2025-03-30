@@ -1,0 +1,21 @@
+# generated with ia
+name: Build Godot APK
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Generate APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Godot Android export
+        uses: dulvui/godot-android-export@v4
+        with:
+          godot-version: 4.4.1
