@@ -18,6 +18,7 @@ jobs:
 
       - name: Create export_presets.cfg
         run: |
+          mkdir -p project
           cat <<EOT > project/export_presets.cfg
           [preset.0]
           name="Android"
