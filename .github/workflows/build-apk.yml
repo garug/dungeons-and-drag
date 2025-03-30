@@ -4,48 +4,80 @@ on:
   push:
     branches:
       - build-apk
-  workflow_dispatch:
 
 jobs:
   build:
+    name: Generate APK
     runs-on: ubuntu-latest
-    container:
-      image: barichello/godot-ci:4.4.1
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create export_presets.cfg
+      - name: Create export_credentials.cfg
         run: |
-          mkdir -p project
-          cat <<EOT > project/export_presets.cfg
-          [preset.0]
-          name="Android"
-          platform="Android"
-          export_path="bin/dungeons-and-drag.apk"
+          mkdir .godot/
+          
+          export_credentials_content="[preset.0]
+
+          script_encryption_key=""
+          
           [preset.0.options]
-          custom_template/debug="res://android_debug.apk"
-          custom_template/release="res://android_release.apk"
-          keystore/release="default"
-          EOT
+          
+          keystore/debug=""
+          keystore/debug_user=""
+          keystore/debug_password=""
+          keystore/release=""
+          keystore/release_user=""
+          keystore/release_password=""
+          
+          echo "$export_credentials_content" > .godot/export_credentials.cfg
 
-      - name: Build APK
-        run: |
-          mkdir -p bin
-          godot --headless --export-release Android bin/dungeons-and-drag.apk
-
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4
+      - name: Godot Android export
+        uses: dulvui/godot-android-export@v4.1.0
         with:
-          name: dungeons-and-drag.apk
-          path: bin/dungeons-and-drag.apk
+          godot-version: ${{ env.GODOT_VERSION }}
+#   workflow_dispatch:
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: bin/dungeons-and-drag.apk
-          tag_name: v1.0.${{ github.run_number }}
-          release_name: "Release v1.0.${{ github.run_number }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     container:
+#       image: barichello/godot-ci:4.4.1
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Create export_presets.cfg
+#         run: |
+#           mkdir -p project
+#           cat <<EOT > project/export_presets.cfg
+#           [preset.0]
+#           name="Android"
+#           platform="Android"
+#           export_path="bin/dungeons-and-drag.apk"
+#           [preset.0.options]
+#           custom_template/debug="res://android_debug.apk"
+#           custom_template/release="res://android_release.apk"
+#           keystore/release="default"
+#           EOT
+
+#       - name: Build APK
+#         run: |
+#           mkdir -p bin
+#           godot --headless --export-release Android bin/dungeons-and-drag.apk
+
+#       - name: Upload APK Artifact
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: dungeons-and-drag.apk
+#           path: bin/dungeons-and-drag.apk
+
+#       - name: Create GitHub Release
+#         uses: softprops/action-gh-release@v2
+#         with:
+#           files: bin/dungeons-and-drag.apk
+#           tag_name: v1.0.${{ github.run_number }}
+#           release_name: "Release v1.0.${{ github.run_number }}"
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
