@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - build-apk
-env:
-  ANDROID_KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
-  ANDROID_STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
 jobs:
   build:
     name: Generate APK
@@ -30,8 +27,8 @@ jobs:
           keystore/debug_user=\"\"
           keystore/debug_password=\"\"
           keystore/release=\"\release.keystore"
-          keystore/release_user=\"ANDROID_KEYSTORE_ALIAS\"
-          keystore/release_password=\"ANDROID_KEYSTORE_PASSWORD\""
+          keystore/release_user=\"${{ secrets.ANDROID_KEYSTORE_ALIAS }}\"
+          keystore/release_password=\"${{ secrets.ANDROID_KEYSTORE_PASSWORD }}\""
           
           echo "$export_credentials_content" > .godot/export_credentials.cfg
       - name: Godot Android export
