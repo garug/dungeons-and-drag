@@ -1,21 +1,57 @@
-# generated with ia
 name: Build Godot APK
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
+      - build-apk
+env:
+  ANDROID_KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+  ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
 jobs:
   build:
     name: Generate APK
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Create keystore
+        run: echo ${{ secrets.ANDROID_KEYSTORE }} | base64 --decode > release.keystore
+      - name: Create export_credentials.cfg
+        run: |
+          mkdir .godot/
+
+          export_credentials_content="[preset.0]
+          
+          script_encryption_key=\"\"
+          
+          [preset.0.options]
+          
+          keystore/debug=\"\"
+          keystore/debug_user=\"\"
+          keystore/debug_password=\"\"
+          keystore/release=\"release.keystore\"
+          keystore/release_user=\"ANDROID_KEYSTORE_ALIAS\"
+          keystore/release_password=\"ANDROID_KEYSTORE_PASSWORD\""
+
+          echo "$export_credentials_content" > .godot/export_credentials.cfg
+
+          sed -i "s|ANDROID_KEYSTORE_ALIAS|$ANDROID_KEYSTORE_ALIAS|g" .godot/export_credentials.cfg
+          sed -i "s|ANDROID_KEYSTORE_PASSWORD|$ANDROID_KEYSTORE_PASSWORD|g" .godot/export_credentials.cfg
       - name: Godot Android export
-        uses: dulvui/godot-android-export@v4
+        uses: dulvui/godot-android-export@v4.1.0
         with:
           godot-version: 4.4.1
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dungeons-and-drag.apk
+          path: dungeons-and-drag.apk
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dungeons-and-drag.apk
+          tag_name: v1.0.${{ github.run_number }}
+          release_name: "Release v1.0.${{ github.run_number }}"
