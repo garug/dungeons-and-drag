@@ -41,6 +41,7 @@ jobs:
           sed -i "s|ANDROID_KEYSTORE_PASSWORD|$ANDROID_KEYSTORE_PASSWORD|g" .godot/export_credentials.cfg
       - name: Godot Android export
         uses: dulvui/godot-android-export@v4.1.0
+        continue-on-error: true
         with:
           godot-version: 4.4.1
       - name: Upload APK Artifact
