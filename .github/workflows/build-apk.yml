@@ -34,7 +34,7 @@ jobs:
         run: |
           wget https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_export_templates.tpz
           mkdir -p ~/.local/share/godot/templates/4.4.1-stable
-          tar -xvf Godot_v4.4.1-stable_export_templates.tpz -C ~/.local/share/godot/templates/4.4.1-stable
+          unzip Godot_v4.4.1-stable_export_templates.tpz -d ~/.local/share/godot/templates/4.4.1-stable
 
       - name: Build APK
         run: |
