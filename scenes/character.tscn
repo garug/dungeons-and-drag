@@ -25,6 +25,8 @@ texture = ExtResource("1_glpr6")
 [node name="SwapArea" type="Area2D" parent="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4
+input_pickable = false
+monitoring = false
 
 [node name="SwapShape" type="CollisionShape2D" parent="CharacterBody2D/SwapArea"]
 shape = SubResource("CircleShape2D_glpr6")

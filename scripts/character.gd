@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Character
+
 var dragging = false
 
 var speed = 20
@@ -20,15 +22,11 @@ func _input(event: InputEvent):
 
 func _move():
 	velocity = get_local_mouse_position() * speed
-	var current_local = snapped(global_position, Vector2.ONE * 64)
-	if(current_path.back() != current_local):
-		current_path.append(current_local)
-		print(current_path)
 	move_and_slide()
 	
 func _on_move_start():
-	$SwapArea.monitoring = false
-	current_path.append(snapped(global_position, Vector2.ONE * 64))
+	$SwapArea.monitoring = true
+	$SwapArea.set_collision_layer_value(3, false)
 	dragging = true
 
 func _on_move_end():
@@ -38,12 +36,14 @@ func _on_move_end():
 	tween.tween_property(self, "position", final_position, 0.05)
 	await tween.finished
 	dragging = false
+	$SwapArea.monitoring = false
+	$SwapArea.set_collision_layer_value(3, true)
 	current_path = []
-	$SwapArea.monitoring = true
 
 func _on_swap_area_area_entered(area: Area2D) -> void:
-	var last_tile = area.get_parent().current_path.back()
-	var tween := create_tween()
-	tween.set_ease(Tween.EASE_OUT_IN)
-	tween.tween_property(self, "global_position", last_tile, 0.05)
-	await tween.finished
+	var tile = area.get_parent()
+	current_path.append(tile)
+	await get_tree().process_frame
+	if tile.inside != null:
+		print("has content")
+	#print(current_path)
