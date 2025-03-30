@@ -3,7 +3,7 @@ name: Build Godot APK
 on:
   push:
     branches:
-      - build-apk
+      - main
 env:
   ANDROID_KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
   ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
