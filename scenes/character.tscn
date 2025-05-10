@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dk3cjd5x6t7l0" path="res://scripts/character.gd" id="1_pjt0s"]
 [ext_resource type="Script" uid="uid://qnrlecvdrov6" path="res://scripts/swap_area.gd" id="3_lrhn5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa5vi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrhn5"]
 size = Vector2(64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_glpr6"]
@@ -16,7 +16,7 @@ input_pickable = true
 script = ExtResource("1_pjt0s")
 
 [node name="TouchShape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_wa5vi")
+shape = SubResource("RectangleShape2D_lrhn5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_glpr6")

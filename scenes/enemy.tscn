@@ -3,9 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://dnaowvbdtc2vw" path="res://lib/characters/red.png" id="1_7p1mj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7p1mj"]
-radius = 8.0
+radius = 5.0
 
 [node name="Enemy" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7p1mj")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -13,6 +16,3 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("CircleShape2D_7p1mj")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_7p1mj")

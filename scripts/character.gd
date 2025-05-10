@@ -45,8 +45,12 @@ func _physics_process(delta: float) -> void:
 		_follow_mouse(delta)
 
 func _snap_to_tile():
-	var from = global_position
 	var to = snapped(global_position, Vector2.ONE * 64)
+	_snap_allies(to)
+	await move_to(to, 0.025)
+
+func _snap_allies(to: Vector2):
+	var from = global_position
 	var space_state = get_world_2d().direct_space_state
 	var query := PhysicsRayQueryParameters2D.create(from, to, 1 << 2)
 	query.collide_with_areas = true
@@ -54,4 +58,3 @@ func _snap_to_tile():
 	if result:
 		var last_position = $SwapArea.current_path.back().position
 		result.collider.move_to(last_position, 0.025)
-	await move_to(to, 0.05)

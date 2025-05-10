@@ -25,8 +25,13 @@ window/handheld/orientation=5
 [layer_names]
 
 2d_physics/layer_1="characters_touchable_area"
+2d_physics/layer_2="unpenetrable"
 2d_physics/layer_3="characters_swap_area"
 2d_physics/layer_4="tiles"
+
+[physics]
+
+common/physics_ticks_per_second=80
 
 [rendering]
 
