@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1s787tjvgvg1" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://clryy2hc0m1tj" path="res://scenes/tile.tscn" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://bxn2nejxx0bum" path="res://scripts/board.gd" id="3_7mycd"]
+[ext_resource type="Script" uid="uid://cvlbd485v6del" path="res://scripts/game_board.gd" id="2_272bh"]
 [ext_resource type="TileSet" uid="uid://btc8f78kgnwdw" path="res://lib/default_tileset.tres" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://durrq6pc4vadj" path="res://scenes/character.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bf6t13yid8o2q" path="res://scenes/enemy.tscn" id="4_1bvp3"]
@@ -12,7 +12,7 @@
 script = ExtResource("1_ig7tw")
 
 [node name="Board" type="Node2D" parent="."]
-script = ExtResource("3_7mycd")
+script = ExtResource("2_272bh")
 
 [node name="Background" type="TileMapLayer" parent="Board"]
 position = Vector2(-32, -32)
@@ -82,105 +82,95 @@ position = Vector2(192, 128)
 [node name="Tile18" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
 position = Vector2(320, 128)
 
-[node name="Row2" type="Node2D" parent="Board/Tiles"]
+[node name="Tile" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
 position = Vector2(0, 192)
 
-[node name="Tile" parent="Board/Tiles/Row2" instance=ExtResource("2_0xm2m")]
+[node name="Tile2" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(64, 192)
 
-[node name="Tile2" parent="Board/Tiles/Row2" instance=ExtResource("2_0xm2m")]
-position = Vector2(64, 0)
+[node name="Tile3" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(128, 192)
 
-[node name="Tile3" parent="Board/Tiles/Row2" instance=ExtResource("2_0xm2m")]
-position = Vector2(128, 0)
+[node name="Tile4" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(256, 192)
 
-[node name="Tile4" parent="Board/Tiles/Row2" instance=ExtResource("2_0xm2m")]
-position = Vector2(256, 0)
+[node name="Tile5" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(192, 192)
 
-[node name="Tile5" parent="Board/Tiles/Row2" instance=ExtResource("2_0xm2m")]
-position = Vector2(192, 0)
+[node name="Tile6" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(320, 192)
 
-[node name="Tile6" parent="Board/Tiles/Row2" instance=ExtResource("2_0xm2m")]
-position = Vector2(320, 0)
-
-[node name="Row3" type="Node2D" parent="Board/Tiles"]
+[node name="Tile19" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
 position = Vector2(0, 256)
 
-[node name="Tile" parent="Board/Tiles/Row3" instance=ExtResource("2_0xm2m")]
+[node name="Tile20" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(64, 256)
 
-[node name="Tile2" parent="Board/Tiles/Row3" instance=ExtResource("2_0xm2m")]
-position = Vector2(64, 0)
+[node name="Tile21" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(128, 256)
 
-[node name="Tile3" parent="Board/Tiles/Row3" instance=ExtResource("2_0xm2m")]
-position = Vector2(128, 0)
+[node name="Tile22" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(256, 256)
 
-[node name="Tile4" parent="Board/Tiles/Row3" instance=ExtResource("2_0xm2m")]
-position = Vector2(256, 0)
+[node name="Tile23" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(192, 256)
 
-[node name="Tile5" parent="Board/Tiles/Row3" instance=ExtResource("2_0xm2m")]
-position = Vector2(192, 0)
+[node name="Tile24" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(320, 256)
 
-[node name="Tile6" parent="Board/Tiles/Row3" instance=ExtResource("2_0xm2m")]
-position = Vector2(320, 0)
-
-[node name="Row4" type="Node2D" parent="Board/Tiles"]
+[node name="Tile25" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
 position = Vector2(0, 320)
 
-[node name="Tile" parent="Board/Tiles/Row4" instance=ExtResource("2_0xm2m")]
+[node name="Tile26" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(64, 320)
 
-[node name="Tile2" parent="Board/Tiles/Row4" instance=ExtResource("2_0xm2m")]
-position = Vector2(64, 0)
+[node name="Tile27" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(128, 320)
 
-[node name="Tile3" parent="Board/Tiles/Row4" instance=ExtResource("2_0xm2m")]
-position = Vector2(128, 0)
+[node name="Tile28" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(256, 320)
 
-[node name="Tile4" parent="Board/Tiles/Row4" instance=ExtResource("2_0xm2m")]
-position = Vector2(256, 0)
+[node name="Tile29" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(192, 320)
 
-[node name="Tile5" parent="Board/Tiles/Row4" instance=ExtResource("2_0xm2m")]
-position = Vector2(192, 0)
+[node name="Tile30" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(320, 320)
 
-[node name="Tile6" parent="Board/Tiles/Row4" instance=ExtResource("2_0xm2m")]
-position = Vector2(320, 0)
-
-[node name="Row5" type="Node2D" parent="Board/Tiles"]
+[node name="Tile31" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
 position = Vector2(0, 384)
 
-[node name="Tile" parent="Board/Tiles/Row5" instance=ExtResource("2_0xm2m")]
+[node name="Tile32" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(64, 384)
 
-[node name="Tile2" parent="Board/Tiles/Row5" instance=ExtResource("2_0xm2m")]
-position = Vector2(64, 0)
+[node name="Tile33" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(128, 384)
 
-[node name="Tile3" parent="Board/Tiles/Row5" instance=ExtResource("2_0xm2m")]
-position = Vector2(128, 0)
+[node name="Tile34" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(256, 384)
 
-[node name="Tile4" parent="Board/Tiles/Row5" instance=ExtResource("2_0xm2m")]
-position = Vector2(256, 0)
+[node name="Tile35" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(192, 384)
 
-[node name="Tile5" parent="Board/Tiles/Row5" instance=ExtResource("2_0xm2m")]
-position = Vector2(192, 0)
+[node name="Tile36" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(320, 384)
 
-[node name="Tile6" parent="Board/Tiles/Row5" instance=ExtResource("2_0xm2m")]
-position = Vector2(320, 0)
-
-[node name="Row6" type="Node2D" parent="Board/Tiles"]
+[node name="Tile37" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
 position = Vector2(0, 448)
 
-[node name="Tile" parent="Board/Tiles/Row6" instance=ExtResource("2_0xm2m")]
+[node name="Tile38" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(64, 448)
 
-[node name="Tile2" parent="Board/Tiles/Row6" instance=ExtResource("2_0xm2m")]
-position = Vector2(64, 0)
+[node name="Tile39" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(128, 448)
 
-[node name="Tile3" parent="Board/Tiles/Row6" instance=ExtResource("2_0xm2m")]
-position = Vector2(128, 0)
+[node name="Tile40" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(256, 448)
 
-[node name="Tile4" parent="Board/Tiles/Row6" instance=ExtResource("2_0xm2m")]
-position = Vector2(256, 0)
+[node name="Tile41" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(192, 448)
 
-[node name="Tile5" parent="Board/Tiles/Row6" instance=ExtResource("2_0xm2m")]
-position = Vector2(192, 0)
-
-[node name="Tile6" parent="Board/Tiles/Row6" instance=ExtResource("2_0xm2m")]
-position = Vector2(320, 0)
+[node name="Tile42" parent="Board/Tiles" instance=ExtResource("2_0xm2m")]
+position = Vector2(320, 448)
 
 [node name="Characters" type="Node2D" parent="Board"]
 
@@ -220,9 +210,6 @@ position = Vector2(256, 128)
 
 [node name="Enemy9" parent="Board/Enemies" instance=ExtResource("4_1bvp3")]
 position = Vector2(320, 192)
-
-[node name="Enemy10" parent="Board/Enemies" instance=ExtResource("4_1bvp3")]
-position = Vector2(0, 128)
 
 [node name="Enemy11" parent="Board/Enemies" instance=ExtResource("4_1bvp3")]
 position = Vector2(64, 128)
